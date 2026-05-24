@@ -11,8 +11,8 @@ Generated application files are committed to the repository default branch after
   "id": "bmF0YWxpa3Jhc25vdi9tb29kLW1pcnJvci1jbG9zZXQ",
   "name": "Untitled project",
   "summary": "Waiting for input processing.",
-  "status": "FAILED",
-  "currentStep": "Failed",
+  "status": "PROCESSING_INPUT",
+  "currentStep": "Continuing input processing",
   "githubRepoUrl": "https://github.com/natalikrasnov/mood-mirror-closet",
   "githubOwner": "natalikrasnov",
   "githubRepo": "mood-mirror-closet",
@@ -20,7 +20,7 @@ Generated application files are committed to the repository default branch after
   "githubDefaultBranch": "main",
   "error": null,
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:22:57.226Z",
+  "updatedAt": "2026-05-24T08:22:58.397Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -42,6 +42,13 @@ Generated application files are committed to the repository default branch after
       "message": "GitHub workflow permission is missing.",
       "level": "error",
       "status": "FAILED"
+    },
+    {
+      "id": "action_251facc02562b8fda73b",
+      "at": "2026-05-24T08:22:58.397Z",
+      "message": "Continuing failed run with previous dossier, prompt, architecture, and error context",
+      "level": "warning",
+      "status": "PROCESSING_INPUT"
     }
   ],
   "inputs": [
@@ -63,14 +70,14 @@ Generated application files are committed to the repository default branch after
 
 ## Status
 
-Current stage: **Failed**
+Current stage: **Continuing input processing**
 
 Complete: **no**
 
 | Stage | State |
 | --- | --- |
 | Received user prompt | done |
-| Generated product requirements | failed |
+| Generated product requirements | current |
 | Created architecture plan | pending |
 | Generated project code | pending |
 | Committed files to GitHub | pending |
@@ -144,6 +151,7 @@ Codex prompt plan is pending.
 - 2026-05-24T08:22:21.610Z - Received user input (info)
 - 2026-05-24T08:22:24.435Z - Processing user input (info)
 - 2026-05-24T08:22:26.300Z - GitHub workflow permission is missing. (error)
+- 2026-05-24T08:22:58.397Z - Continuing failed run with previous dossier, prompt, architecture, and error context (warning)
 
 ## Latest Error
 
