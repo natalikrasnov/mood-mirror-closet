@@ -9,8 +9,8 @@ Generated application files are committed to the repository default branch after
 ~~~deployrocket-state-json
 {
   "id": "bmF0YWxpa3Jhc25vdi9tb29kLW1pcnJvci1jbG9zZXQ",
-  "name": "MirrorFit",
-  "summary": "A mobile-first, fullscreen “smart mirror” web app that opens with two quick prompts (mood + destination) and then launches a front-camera mirror view with minimal UI, automatically overlaying outfit looks that can be swiped through, regenerated, and saved to a closet gallery.",
+  "name": "MirrorLook",
+  "summary": "A mobile-first, fullscreen “smart mirror” web app that asks your mood and destination, then opens the front camera as a clean mirror view and overlays curated outfit looks you can swipe through, regenerate, and save to a minimal closet gallery.",
   "status": "GENERATING_PROMPT",
   "currentStep": "Generating Codex prompt",
   "githubRepoUrl": "https://github.com/natalikrasnov/mood-mirror-closet",
@@ -20,7 +20,7 @@ Generated application files are committed to the repository default branch after
   "githubDefaultBranch": "main",
   "error": null,
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:23:18.140Z",
+  "updatedAt": "2026-05-24T08:23:19.564Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -73,45 +73,47 @@ Generated application files are committed to the repository default branch after
       "images": [],
       "createdAt": "2026-05-24T08:22:19.177Z",
       "structuredRequirements": {
-        "projectName": "MirrorFit",
-        "summary": "A mobile-first, fullscreen “smart mirror” web app that opens with two quick prompts (mood + destination) and then launches a front-camera mirror view with minimal UI, automatically overlaying outfit looks that can be swiped through, regenerated, and saved to a closet gallery.",
-        "intent": "Make the phone feel like an interactive mirror that helps users decide what to wear by generating and previewing outfit overlays based on mood and destination, with fast swipe-based exploration and a saved looks closet.",
+        "projectName": "MirrorLook",
+        "summary": "A mobile-first, fullscreen “smart mirror” web app that asks your mood and destination, then opens the front camera as a clean mirror view and overlays curated outfit looks you can swipe through, regenerate, and save to a minimal closet gallery.",
+        "intent": "Help users quickly decide what to wear by combining a mirror-like front-camera experience with lightweight, visual outfit suggestions driven by mood and destination, with swipe-based exploration and a simple saved-looks closet.",
         "targetUsers": [
-          "People choosing an outfit before leaving the house",
-          "Users who want a minimal, visual, camera-first experience on mobile",
-          "Anyone who wants quick outfit inspiration based on how they feel and where they’re going"
+          "Mobile users choosing an outfit before leaving",
+          "Users who want quick, visual outfit inspiration without heavy UI",
+          "Anyone who prefers swipe-based browsing and saving favorite looks"
         ],
         "coreFeatures": [
-          "Mobile-first onboarding prompts: mood (preset options + free text) and destination (preset options + free text)",
-          "Fullscreen front-camera mirror view using getUserMedia with user-facing camera preference",
-          "Mirror-like presentation: camera video fills the screen with no surrounding layout, panels, or sections",
-          "Outfit overlay rendered on top of the video (client-side), automatically selected based on mood + destination",
-          "Swipe left/right anywhere on the mirror to change the entire outfit look (previous/next look)",
-          "Small “Try again” floating button to generate a new outfit suggestion set without leaving the mirror",
-          "Small floating “Closet” button to open a fullscreen gallery of saved looks",
-          "Save current look to closet (via a minimal control such as a small bookmark/heart icon) and persist to localStorage",
-          "Selecting a saved look applies it instantly to the mirror overlay",
-          "Offline-capable behavior (static assets + localStorage); no backend required"
+          "Onboarding prompts: mood (preset options + free text) and destination (preset options + free text)",
+          "Fullscreen front-camera mirror mode using getUserMedia with environment stripped away (no panels/sections around the camera)",
+          "Mirror-like behavior: front camera preview appears as a mirror (horizontally flipped) and occupies the entire viewport",
+          "Outfit overlay rendered on top of the live camera feed (visual assets bundled with the app: PNG/SVG layers) selected automatically from mood + destination",
+          "Swipe left/right to switch the entire outfit (one swipe = next/previous look)",
+          "Small “Try again” button to generate a new outfit suggestion set (reshuffle/reselect based on mood/destination)",
+          "Floating “Closet” button opening a fullscreen gallery of saved looks",
+          "Save current look to closet (stored client-side via localStorage); selecting a saved look applies it instantly on the mirror",
+          "Minimal UI chrome: only essential floating controls with high contrast and unobtrusive styling",
+          "Graceful permission handling: camera permission prompt, retry, and fallback messaging if unavailable/denied"
         ],
         "screens": [
-          "Intro / Permission Primer (optional but recommended): brief explanation + button to start and request camera access",
-          "Mood Prompt: selectable chips (e.g., Confident, Cozy, Energetic, Calm, Bold) + free-text input",
-          "Destination Prompt: selectable chips (e.g., Work, Date, Gym, Party, Errands, Travel) + free-text input",
-          "Mirror View (main): fullscreen mirrored front camera with outfit overlay + small floating controls (Try again, Closet, Save)",
-          "Closet Gallery (fullscreen modal/screen): grid of saved looks (thumbnail cards) + close/back; tap applies look"
+          "Splash/Entry: branding + primary action to begin (optional, very brief)",
+          "Mood Prompt: preset chips (e.g., Confident, Cozy, Bold, Calm, Energetic) + free-text input; Next",
+          "Destination Prompt: preset chips (e.g., Work, Date, Gym, Party, Errands, Chill) + free-text input; Start Mirror",
+          "Mirror Screen (primary): fullscreen front camera (mirrored) with outfit overlay, swipe navigation, small Try Again button, floating Closet button, optional Save Look control",
+          "Closet Gallery (fullscreen modal): grid of saved looks; tap to apply; option to delete single look; close to return to mirror",
+          "Permission/Fallback State: inline/fullscreen message with actions (Allow camera, Retry, Continue without camera using placeholder background)"
         ],
-        "designDirection": "Immersive, camera-first, mirror-like UI: fullscreen video with a subtle outfit overlay and only a few small floating controls. Use dark/neutral minimal UI chrome, high contrast icons, and gesture-first interactions. Avoid visible page layout; no headers, sidebars, cards, or form-heavy screens once in mirror mode.",
+        "designDirection": "Ultra-minimal, immersive mirror-first UI: camera feed is the entire screen; overlay outfits are visually clear and centered; controls are tiny floating buttons (top/bottom corners) with subtle translucency; use swipe gestures as the primary navigation; avoid panels, cards, and persistent text—only brief labels when necessary. Overall feel: a smart mirror helping you decide what to wear today.",
         "constraints": [
-          "Must be a serverless, browser-only web app runnable from static files (GitHub Pages compatible)",
-          "No backend/API/database/auth/scheduled jobs; persist saved looks using localStorage only",
-          "Camera access via standard Web APIs (navigator.mediaDevices.getUserMedia); handle permission denial gracefully",
-          "Prefer the front-facing camera when available (facingMode: 'user'); provide fallback if not supported",
-          "Outfit overlays must be implemented client-side using static assets (e.g., PNG/SVG layers) and/or Canvas/CSS overlays; no reliance on external ML services",
-          "Swipes must work reliably on mobile touch (pointer/touch events) and degrade to keyboard arrows on desktop",
-          "Maintain minimal on-screen UI: floating buttons only; avoid persistent panels or complex controls over the mirror"
+          "Serverless, browser-only web app runnable from static files on GitHub Pages (no backend, no external databases, no server APIs)",
+          "Camera access via WebRTC getUserMedia; must handle iOS Safari/Android Chrome permission and autoplay quirks",
+          "Front camera selection should request user-facing camera where supported (facingMode: 'user'); provide fallback if not available",
+          "Mirror effect must be implemented by horizontally flipping the video preview layer (CSS transform) while keeping overlays aligned",
+          "Outfit generation must be client-side only: use an in-repo static catalog of outfit definitions and assets; selection logic based on mood/destination text + presets",
+          "Saved looks must be stored client-side only (localStorage). If thumbnails are needed, store small metadata and/or a generated dataURL preview (with size limits and graceful degradation)",
+          "No reliance on paid/secret credentials or non-static platform services",
+          "Must remain usable one-handed on small screens; controls reachable and not blocking the face/torso region"
         ],
         "imageContext": [],
-        "repositoryNameSuggestion": "mirrorfit"
+        "repositoryNameSuggestion": "mirrorlook"
       }
     }
   ],
@@ -140,9 +142,9 @@ Complete: **no**
 
 ## Project
 
-Name: MirrorFit
+Name: MirrorLook
 
-Summary: A mobile-first, fullscreen “smart mirror” web app that opens with two quick prompts (mood + destination) and then launches a front-camera mirror view with minimal UI, automatically overlaying outfit looks that can be swiped through, regenerated, and saved to a closet gallery.
+Summary: A mobile-first, fullscreen “smart mirror” web app that asks your mood and destination, then opens the front camera as a clean mirror view and overlays curated outfit looks you can swipe through, regenerate, and save to a minimal closet gallery.
 
 Repository: https://github.com/natalikrasnov/mood-mirror-closet
 
@@ -201,45 +203,47 @@ a smart mirror that helps you decide what to wear today.
 
 ~~~json
 {
-  "projectName": "MirrorFit",
-  "summary": "A mobile-first, fullscreen “smart mirror” web app that opens with two quick prompts (mood + destination) and then launches a front-camera mirror view with minimal UI, automatically overlaying outfit looks that can be swiped through, regenerated, and saved to a closet gallery.",
-  "intent": "Make the phone feel like an interactive mirror that helps users decide what to wear by generating and previewing outfit overlays based on mood and destination, with fast swipe-based exploration and a saved looks closet.",
+  "projectName": "MirrorLook",
+  "summary": "A mobile-first, fullscreen “smart mirror” web app that asks your mood and destination, then opens the front camera as a clean mirror view and overlays curated outfit looks you can swipe through, regenerate, and save to a minimal closet gallery.",
+  "intent": "Help users quickly decide what to wear by combining a mirror-like front-camera experience with lightweight, visual outfit suggestions driven by mood and destination, with swipe-based exploration and a simple saved-looks closet.",
   "targetUsers": [
-    "People choosing an outfit before leaving the house",
-    "Users who want a minimal, visual, camera-first experience on mobile",
-    "Anyone who wants quick outfit inspiration based on how they feel and where they’re going"
+    "Mobile users choosing an outfit before leaving",
+    "Users who want quick, visual outfit inspiration without heavy UI",
+    "Anyone who prefers swipe-based browsing and saving favorite looks"
   ],
   "coreFeatures": [
-    "Mobile-first onboarding prompts: mood (preset options + free text) and destination (preset options + free text)",
-    "Fullscreen front-camera mirror view using getUserMedia with user-facing camera preference",
-    "Mirror-like presentation: camera video fills the screen with no surrounding layout, panels, or sections",
-    "Outfit overlay rendered on top of the video (client-side), automatically selected based on mood + destination",
-    "Swipe left/right anywhere on the mirror to change the entire outfit look (previous/next look)",
-    "Small “Try again” floating button to generate a new outfit suggestion set without leaving the mirror",
-    "Small floating “Closet” button to open a fullscreen gallery of saved looks",
-    "Save current look to closet (via a minimal control such as a small bookmark/heart icon) and persist to localStorage",
-    "Selecting a saved look applies it instantly to the mirror overlay",
-    "Offline-capable behavior (static assets + localStorage); no backend required"
+    "Onboarding prompts: mood (preset options + free text) and destination (preset options + free text)",
+    "Fullscreen front-camera mirror mode using getUserMedia with environment stripped away (no panels/sections around the camera)",
+    "Mirror-like behavior: front camera preview appears as a mirror (horizontally flipped) and occupies the entire viewport",
+    "Outfit overlay rendered on top of the live camera feed (visual assets bundled with the app: PNG/SVG layers) selected automatically from mood + destination",
+    "Swipe left/right to switch the entire outfit (one swipe = next/previous look)",
+    "Small “Try again” button to generate a new outfit suggestion set (reshuffle/reselect based on mood/destination)",
+    "Floating “Closet” button opening a fullscreen gallery of saved looks",
+    "Save current look to closet (stored client-side via localStorage); selecting a saved look applies it instantly on the mirror",
+    "Minimal UI chrome: only essential floating controls with high contrast and unobtrusive styling",
+    "Graceful permission handling: camera permission prompt, retry, and fallback messaging if unavailable/denied"
   ],
   "screens": [
-    "Intro / Permission Primer (optional but recommended): brief explanation + button to start and request camera access",
-    "Mood Prompt: selectable chips (e.g., Confident, Cozy, Energetic, Calm, Bold) + free-text input",
-    "Destination Prompt: selectable chips (e.g., Work, Date, Gym, Party, Errands, Travel) + free-text input",
-    "Mirror View (main): fullscreen mirrored front camera with outfit overlay + small floating controls (Try again, Closet, Save)",
-    "Closet Gallery (fullscreen modal/screen): grid of saved looks (thumbnail cards) + close/back; tap applies look"
+    "Splash/Entry: branding + primary action to begin (optional, very brief)",
+    "Mood Prompt: preset chips (e.g., Confident, Cozy, Bold, Calm, Energetic) + free-text input; Next",
+    "Destination Prompt: preset chips (e.g., Work, Date, Gym, Party, Errands, Chill) + free-text input; Start Mirror",
+    "Mirror Screen (primary): fullscreen front camera (mirrored) with outfit overlay, swipe navigation, small Try Again button, floating Closet button, optional Save Look control",
+    "Closet Gallery (fullscreen modal): grid of saved looks; tap to apply; option to delete single look; close to return to mirror",
+    "Permission/Fallback State: inline/fullscreen message with actions (Allow camera, Retry, Continue without camera using placeholder background)"
   ],
-  "designDirection": "Immersive, camera-first, mirror-like UI: fullscreen video with a subtle outfit overlay and only a few small floating controls. Use dark/neutral minimal UI chrome, high contrast icons, and gesture-first interactions. Avoid visible page layout; no headers, sidebars, cards, or form-heavy screens once in mirror mode.",
+  "designDirection": "Ultra-minimal, immersive mirror-first UI: camera feed is the entire screen; overlay outfits are visually clear and centered; controls are tiny floating buttons (top/bottom corners) with subtle translucency; use swipe gestures as the primary navigation; avoid panels, cards, and persistent text—only brief labels when necessary. Overall feel: a smart mirror helping you decide what to wear today.",
   "constraints": [
-    "Must be a serverless, browser-only web app runnable from static files (GitHub Pages compatible)",
-    "No backend/API/database/auth/scheduled jobs; persist saved looks using localStorage only",
-    "Camera access via standard Web APIs (navigator.mediaDevices.getUserMedia); handle permission denial gracefully",
-    "Prefer the front-facing camera when available (facingMode: 'user'); provide fallback if not supported",
-    "Outfit overlays must be implemented client-side using static assets (e.g., PNG/SVG layers) and/or Canvas/CSS overlays; no reliance on external ML services",
-    "Swipes must work reliably on mobile touch (pointer/touch events) and degrade to keyboard arrows on desktop",
-    "Maintain minimal on-screen UI: floating buttons only; avoid persistent panels or complex controls over the mirror"
+    "Serverless, browser-only web app runnable from static files on GitHub Pages (no backend, no external databases, no server APIs)",
+    "Camera access via WebRTC getUserMedia; must handle iOS Safari/Android Chrome permission and autoplay quirks",
+    "Front camera selection should request user-facing camera where supported (facingMode: 'user'); provide fallback if not available",
+    "Mirror effect must be implemented by horizontally flipping the video preview layer (CSS transform) while keeping overlays aligned",
+    "Outfit generation must be client-side only: use an in-repo static catalog of outfit definitions and assets; selection logic based on mood/destination text + presets",
+    "Saved looks must be stored client-side only (localStorage). If thumbnails are needed, store small metadata and/or a generated dataURL preview (with size limits and graceful degradation)",
+    "No reliance on paid/secret credentials or non-static platform services",
+    "Must remain usable one-handed on small screens; controls reachable and not blocking the face/torso region"
   ],
   "imageContext": [],
-  "repositoryNameSuggestion": "mirrorfit"
+  "repositoryNameSuggestion": "mirrorlook"
 }
 ~~~
 
