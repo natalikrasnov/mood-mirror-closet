@@ -20,7 +20,7 @@ Generated application files are committed to the repository default branch after
   "githubDefaultBranch": "main",
   "error": null,
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:29:09.846Z",
+  "updatedAt": "2026-05-24T08:29:11.127Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -143,6 +143,14 @@ Generated application files are committed to the repository default branch after
       "message": "Configuring GitHub Pages publishing",
       "level": "info",
       "status": "SAVING_TO_GITHUB"
+    },
+    {
+      "id": "action_a9ed6161a3867d35a89f",
+      "at": "2026-05-24T08:29:11.127Z",
+      "message": "GitHub Pages link ready",
+      "level": "success",
+      "status": "SAVING_TO_GITHUB",
+      "details": "https://natalikrasnov.github.io/mood-mirror-closet/"
     }
   ],
   "inputs": [
@@ -517,6 +525,7 @@ Code: GITHUB_409
 OpenAI response resp_0b3a8444c75d5a9a006a12b5bcce00819cb4c833e3e94ca08e did not contain a parsed generated_project payload.
 - 2026-05-24T08:28:59.222Z - Preparing GitHub repository (info)
 - 2026-05-24T08:29:07.763Z - Configuring GitHub Pages publishing (info)
+- 2026-05-24T08:29:11.127Z - GitHub Pages link ready (success) - https://natalikrasnov.github.io/mood-mirror-closet/
 
 ## Latest Error
 
