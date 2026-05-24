@@ -20,7 +20,7 @@ Generated application files are committed to the repository default branch after
   "githubDefaultBranch": "main",
   "error": null,
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:28:56.794Z",
+  "updatedAt": "2026-05-24T08:28:57.983Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -121,6 +121,14 @@ Generated application files are committed to the repository default branch after
       "message": "deployRocket generated 8 rescue project files",
       "level": "success",
       "status": "CODEX_WORKING"
+    },
+    {
+      "id": "action_711a003a28adf081c57e",
+      "at": "2026-05-24T08:28:57.983Z",
+      "message": "Generation completed with warnings",
+      "level": "warning",
+      "status": "CODEX_WORKING",
+      "details": "Codex response was not parseable as generated files; deployRocket committed a compact rescue implementation instead.\nOpenAI response resp_0b3a8444c75d5a9a006a12b5bcce00819cb4c833e3e94ca08e did not contain a parsed generated_project payload."
     }
   ],
   "inputs": [
@@ -488,6 +496,8 @@ Code: GITHUB_409
 - 2026-05-24T08:24:18.239Z - Sent prompt to Codex (info)
 - 2026-05-24T08:24:23.974Z - Codex started generation (info)
 - 2026-05-24T08:28:56.794Z - deployRocket generated 8 rescue project files (success)
+- 2026-05-24T08:28:57.983Z - Generation completed with warnings (warning) - Codex response was not parseable as generated files; deployRocket committed a compact rescue implementation instead.
+OpenAI response resp_0b3a8444c75d5a9a006a12b5bcce00819cb4c833e3e94ca08e did not contain a parsed generated_project payload.
 
 ## Latest Error
 
