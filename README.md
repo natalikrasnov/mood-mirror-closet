@@ -11,16 +11,25 @@ Generated application files are committed to the repository default branch after
   "id": "bmF0YWxpa3Jhc25vdi9tb29kLW1pcnJvci1jbG9zZXQ",
   "name": "Untitled project",
   "summary": "Waiting for input processing.",
-  "status": "PROCESSING_INPUT",
-  "currentStep": "Processing input",
+  "status": "FAILED",
+  "currentStep": "Failed",
   "githubRepoUrl": "https://github.com/natalikrasnov/mood-mirror-closet",
   "githubOwner": "natalikrasnov",
   "githubRepo": "mood-mirror-closet",
   "githubUserLogin": "natalikrasnov",
   "githubDefaultBranch": "main",
-  "error": null,
+  "error": {
+    "message": "GitHub workflow permission is missing.",
+    "code": "GITHUB_WORKFLOW_SCOPE_MISSING",
+    "setupInstructions": [
+      "Disconnect GitHub from this app, then connect again.",
+      "Approve the workflow permission when GitHub asks.",
+      "Retry the project run after the new token is stored."
+    ],
+    "at": "2026-05-24T08:22:26.090Z"
+  },
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:22:24.435Z",
+  "updatedAt": "2026-05-24T08:22:26.300Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -35,6 +44,13 @@ Generated application files are committed to the repository default branch after
       "message": "Processing user input",
       "level": "info",
       "status": "PROCESSING_INPUT"
+    },
+    {
+      "id": "action_165dd168602fd06291cb",
+      "at": "2026-05-24T08:22:26.300Z",
+      "message": "GitHub workflow permission is missing.",
+      "level": "error",
+      "status": "FAILED"
     }
   ],
   "inputs": [
@@ -47,22 +63,20 @@ Generated application files are committed to the repository default branch after
     }
   ],
   "lastCommittedPaths": [],
-  "autoRepairAttempts": [],
-  "activeInputId": "input_46b2c94acaed71f611b2",
-  "activeRunKind": "create"
+  "autoRepairAttempts": []
 }
 ~~~
 
 ## Status
 
-Current stage: **Processing input**
+Current stage: **Failed**
 
 Complete: **no**
 
 | Stage | State |
 | --- | --- |
 | Received user prompt | done |
-| Generated product requirements | current |
+| Generated product requirements | failed |
 | Created architecture plan | pending |
 | Generated project code | pending |
 | Committed files to GitHub | pending |
@@ -135,7 +149,12 @@ Codex prompt plan is pending.
 
 - 2026-05-24T08:22:21.610Z - Received user input (info)
 - 2026-05-24T08:22:24.435Z - Processing user input (info)
+- 2026-05-24T08:22:26.300Z - GitHub workflow permission is missing. (error)
 
 ## Latest Error
 
-None.
+GitHub workflow permission is missing.
+
+~~~text
+
+~~~
