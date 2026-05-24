@@ -18,18 +18,9 @@ Generated application files are committed to the repository default branch after
   "githubRepo": "mood-mirror-closet",
   "githubUserLogin": "natalikrasnov",
   "githubDefaultBranch": "main",
-  "error": {
-    "message": "GitHub workflow permission is missing.",
-    "code": "GITHUB_WORKFLOW_SCOPE_MISSING",
-    "setupInstructions": [
-      "Disconnect GitHub from this app, then connect again.",
-      "Approve the workflow permission when GitHub asks.",
-      "Retry the project run after the new token is stored."
-    ],
-    "at": "2026-05-24T08:22:26.090Z"
-  },
+  "error": null,
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:22:26.300Z",
+  "updatedAt": "2026-05-24T08:22:57.226Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -63,7 +54,10 @@ Generated application files are committed to the repository default branch after
     }
   ],
   "lastCommittedPaths": [],
-  "autoRepairAttempts": []
+  "autoRepairAttempts": [],
+  "activeInputId": "input_46b2c94acaed71f611b2",
+  "activeRunKind": "create",
+  "continueContext": "{\n  \"instruction\": \"Continue this deployRocket project from the failed stage. Preserve the original intent, but generate a compact complete v1 file set so the repository can receive real files.\",\n  \"retryDirective\": \"Do not repeat the oversized previous output attempt. Produce a compact Vite React TypeScript app with package.json, index.html, src/main.tsx, src/App.tsx, src/styles.css, README.md, vite.config.ts, and tsconfig.json.\",\n  \"project\": {\n    \"name\": \"Untitled project\",\n    \"summary\": \"Waiting for input processing.\",\n    \"status\": \"FAILED\",\n    \"currentStep\": \"Failed\",\n    \"repository\": \"https://github.com/natalikrasnov/mood-mirror-closet\"\n  },\n  \"latestError\": {\n    \"message\": \"GitHub workflow permission is missing.\",\n    \"code\": \"GITHUB_WORKFLOW_SCOPE_MISSING\",\n    \"setupInstructions\": [\n      \"Disconnect GitHub from this app, then connect again.\",\n      \"Approve the workflow permission when GitHub asks.\",\n      \"Retry the project run after the new token is stored.\"\n    ],\n    \"at\": \"2026-05-24T08:22:26.090Z\"\n  },\n  \"originalInput\": \"Create a mobile-first web app that works like an interactive mirror.\\r\\n\\r\\nThe main idea:\\r\\nThe camera should feel like a real mirror on the phone screen — fullscreen, clean, and immersive.\\r\\n\\r\\nWhen the app opens:\\r\\n\\r\\n* ask the user how they feel (options + free text)\\r\\n* then ask where they are going (options + free text)\\r\\n\\r\\nAfter that, open a fullscreen front camera.\\r\\n\\r\\nThe camera must behave like a mirror:\\r\\n\\r\\n* no UI layout around it\\r\\n* no panels\\r\\n* no sections\\r\\n* the user should feel like they are looking at themselves in a mirror\\r\\n\\r\\nOn top of the mirror:\\r\\n\\r\\n* an outfit is automatically placed on the user based on mood and destination\\r\\n\\r\\nInteraction:\\r\\n\\r\\n* swiping left/right changes the full outfit on the user\\r\\n* each swipe shows a different look\\r\\n* add a small “try again” button to generate a new outfit\\r\\n\\r\\nAdd a small floating closet button:\\r\\n\\r\\n* opens a fullscreen gallery of saved looks\\r\\n* selecting a look applies it instantly\\r\\n\\r\\nKeep everything minimal and visual.\\r\\n\\r\\nThe entire experience should feel like:\\r\\na smart mirror that helps you decide what to wear today.\",\n  \"actionHistory\": [\n    {\n      \"at\": \"2026-05-24T08:22:21.610Z\",\n      \"message\": \"Received user input\",\n      \"level\": \"info\",\n      \"status\": \"IDLE\"\n    },\n    {\n      \"at\": \"2026-05-24T08:22:24.435Z\",\n      \"message\": \"Processing user input\",\n      \"level\": \"info\",\n      \"status\": \"PROCESSING_INPUT\"\n    },\n    {\n      \"at\": \"2026-05-24T08:22:26.300Z\",\n      \"message\": \"GitHub workflow permission is missing.\",\n      \"level\": \"error\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
 }
 ~~~
 
@@ -153,8 +147,4 @@ Codex prompt plan is pending.
 
 ## Latest Error
 
-GitHub workflow permission is missing.
-
-~~~text
-
-~~~
+None.
