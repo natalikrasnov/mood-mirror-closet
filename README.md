@@ -11,8 +11,8 @@ Generated application files are committed to the repository default branch after
   "id": "bmF0YWxpa3Jhc25vdi9tb29kLW1pcnJvci1jbG9zZXQ",
   "name": "MirrorLook",
   "summary": "A mobile-first, fullscreen “smart mirror” web app that asks your mood and destination, then opens the front camera as a clean mirror view and overlays curated outfit looks you can swipe through, regenerate, and save to a minimal closet gallery.",
-  "status": "SENDING_TO_CODEX",
-  "currentStep": "Submitting prompt to Codex",
+  "status": "CODEX_WORKING",
+  "currentStep": "Codex is generating project files",
   "githubRepoUrl": "https://github.com/natalikrasnov/mood-mirror-closet",
   "githubOwner": "natalikrasnov",
   "githubRepo": "mood-mirror-closet",
@@ -20,7 +20,7 @@ Generated application files are committed to the repository default branch after
   "githubDefaultBranch": "main",
   "error": null,
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:24:22.545Z",
+  "updatedAt": "2026-05-24T08:24:23.974Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -107,6 +107,13 @@ Generated application files are committed to the repository default branch after
       "message": "Sent prompt to Codex",
       "level": "info",
       "status": "SENDING_TO_CODEX"
+    },
+    {
+      "id": "action_fdbd6f9b3db56e6a2209",
+      "at": "2026-05-24T08:24:23.974Z",
+      "message": "Codex started generation",
+      "level": "info",
+      "status": "CODEX_WORKING"
     }
   ],
   "inputs": [
@@ -237,7 +244,7 @@ Generated application files are committed to the repository default branch after
 
 ## Status
 
-Current stage: **Submitting prompt to Codex**
+Current stage: **Codex is generating project files**
 
 Complete: **no**
 
@@ -425,6 +432,7 @@ Code: GITHUB_409
 Original error: README.md does not match e9f875bc3397de4d50d5cedba9079eb89981936b
 Code: GITHUB_409
 - 2026-05-24T08:24:18.239Z - Sent prompt to Codex (info)
+- 2026-05-24T08:24:23.974Z - Codex started generation (info)
 
 ## Latest Error
 
