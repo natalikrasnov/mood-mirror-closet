@@ -20,7 +20,7 @@ Generated application files are committed to the repository default branch after
   "githubDefaultBranch": "main",
   "error": null,
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:24:06.162Z",
+  "updatedAt": "2026-05-24T08:24:07.510Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -129,6 +129,57 @@ Generated application files are committed to the repository default branch after
         ],
         "imageContext": [],
         "repositoryNameSuggestion": "mirrorlook"
+      },
+      "codexPrompt": {
+        "title": "MirrorLook — Mobile-first Smart Mirror (Vite + React + TypeScript, static GitHub Pages)",
+        "summary": "Build a production-oriented, mobile-first, fullscreen “smart mirror” web app. It asks mood + destination, then opens a fullscreen mirrored front-camera view with minimal floating controls. Outfit overlays are generated from a local static catalog based on mood/destination. Swipe left/right changes looks, “Try again” reshuffles suggestions, and a floating “Closet” opens a fullscreen saved-looks gallery stored in localStorage.",
+        "architectureInstructions": [
+          "Create a static, browser-only Vite React TypeScript app (no backend, no serverless functions).",
+          "All data must be local: outfit catalog + overlay assets bundled in repo; persistence via localStorage only.",
+          "Must work when deployed to GitHub Pages, including repo subpath deployments: configure Vite `base: './'` and use relative asset loading via imports.",
+          "Implement a simple in-app state machine for screens (no router required). Screens: Entry (optional brief), Mood prompt, Destination prompt, Mirror, Closet modal, Permission/fallback states.",
+          "Camera uses `navigator.mediaDevices.getUserMedia` with `facingMode: 'user'` when possible; handle errors and allow continuing without camera (placeholder background).",
+          "Mirror effect: horizontally flip the video layer (CSS transform) while keeping overlay aligned (overlay should flip same way so it feels attached to the mirror).",
+          "Primary interaction is swipe left/right to cycle looks; must support touch + mouse (pointer events).",
+          "Keep UI minimal: fullscreen camera, only small floating buttons (Try again, Closet, Save, Back/Close). Avoid panels/sections around the camera.",
+          "Accessibility: clear focus states, labeled buttons, readable contrast, reduced-motion support, ARIA for modal, and non-blocking text overlays.",
+          "No TODOs/placeholders; provide complete, buildable files. Include README with run/build/deploy notes for GitHub Pages."
+        ],
+        "frontendInstructions": [
+          "Use React + TypeScript functional components with hooks.",
+          "Implement `useCamera` hook that starts/stops stream, selects front camera when available, exposes status (idle/loading/ready/denied/error) and error messages.",
+          "Implement `useSwipe` (or similar) using pointer/touch events to detect horizontal swipe with threshold; support keyboard alternatives (left/right arrows) for accessibility.",
+          "Create an outfit system: `Outfit` objects with id, name, tags (moods, destinations, vibe keywords), and layered overlay assets (SVG/PNG). Render overlays as positioned, responsive layers centered over the user (e.g., torso region).",
+          "Outfit selection logic: based on chosen mood/destination (preset + free text), compute matches via tag scoring (simple keyword match) and pick a small set (e.g., 7) of suggestions; “Try again” reshuffles/regenerates a new set from same query.",
+          "Mirror screen layout: `<video>` full-viewport with `object-fit: cover`, `playsInline`, `muted`, `autoPlay` (start playback after stream set). Apply `transform: scaleX(-1)` for mirroring.",
+          "Overlay: absolute positioned container on top of video; ensure it scales with viewport; add slight shadow/outline for visibility.",
+          "Closet: floating button opens fullscreen modal gallery. Gallery shows saved looks in a grid (render mini overlay previews using same outfit renderer at smaller size). Tap applies instantly and closes modal.",
+          "Save current look: store in localStorage as an array of `{ outfitId, createdAt }`; include dedupe or allow multiples; provide delete single look in closet.",
+          "Permission/fallback UI: if denied/unavailable, show minimal fullscreen message with actions: Retry camera, Continue without camera. Continue uses a subtle animated/gradient background instead of video.",
+          "Polish: safe-area insets for iOS, prevent body scroll in mirror mode, handle orientation changes, respect `prefers-reduced-motion` (reduce transitions)."
+        ],
+        "backendInstructions": [
+          "None. Do not add any backend, server APIs, database, auth, or secret handling. All behavior must be client-only using localStorage, in-memory state, and bundled static assets."
+        ],
+        "modificationInstructions": [
+          "Return a COMPLETE REPLACEMENT FILE SET for a new repository (create mode). Include all necessary config and source files.",
+          "Use Vite + React + TypeScript templates as baseline, but fully implement all features described.",
+          "Avoid heavy dependencies; prefer small custom hooks/utilities. Only add dependencies if truly necessary.",
+          "Ensure `npm install`, `npm run build`, and `npm run preview` work without additional steps."
+        ],
+        "acceptanceCriteria": [
+          "App builds with `npm run build` into static assets and runs with `npm run preview`.",
+          "Deployed under a subpath (GitHub Pages) works correctly (Vite base configured; assets load).",
+          "On first use, user is prompted for Mood (preset + free text) and Destination (preset + free text) before mirror starts.",
+          "Mirror screen is truly fullscreen and immersive: no surrounding layout; camera fills viewport; UI is limited to small floating controls.",
+          "Front camera requested (`facingMode: 'user'`); video is mirrored (horizontal flip).",
+          "Outfit overlay appears automatically based on mood/destination; user can swipe left/right to change looks.",
+          "“Try again” generates a fresh set of suggestions from the same mood/destination inputs.",
+          "User can save a look; Closet modal shows saved looks from localStorage; selecting applies instantly; deleting works.",
+          "Graceful handling when camera is denied/unavailable with retry + continue-without-camera mode.",
+          "Mobile-first usability: one-handed controls, safe-area padding, no accidental scroll; accessible buttons/labels and modal semantics."
+        ],
+        "codexPrompt": "You are Codex. Generate a complete replacement file set for a NEW repo implementing the app described below.\n\nProject: MirrorLook (Vite + React + TypeScript)\nDeployment: Static, serverless, browser-only. Must work on GitHub Pages including repository subpath deployments.\nIMPORTANT CONSTRAINTS:\n- Do NOT add backend code, server routes, serverless functions, databases, private APIs, or secrets.\n- All “backend-like” behavior must be localStorage / in-memory state / bundled static sample data.\n- No TODOs or placeholders; everything must be implemented and runnable.\n\nCore UX:\n1) On open, ask: “How do you feel?”\n   - Provide preset option chips + a free-text input.\n   - Presets example: Confident, Cozy, Bold, Calm, Energetic.\n   - Next button.\n2) Then ask: “Where are you going?”\n   - Provide preset chips + free-text input.\n   - Presets example: Work, Date, Gym, Party, Errands, Chill.\n   - Start Mirror button.\n3) After prompts, open fullscreen FRONT camera.\n   - The camera must feel like a real mirror: fullscreen, clean, immersive.\n   - No panels/sections around it.\n   - Mirror effect: horizontally flip the video.\n4) On top of the mirror:\n   - Render a full outfit overlay automatically chosen based on mood + destination.\n   - Overlay assets must be bundled with app (SVG/PNG). Keep it visually clear and centered.\n5) Interaction:\n   - Swipe left/right changes the full outfit (next/previous look).\n   - Add a small “Try again” button to regenerate a new set of outfit suggestions for the same mood/destination.\n6) Closet:\n   - Small floating “Closet” button.\n   - Opens fullscreen gallery modal of saved looks (from localStorage).\n   - Selecting a saved look applies it instantly in the mirror.\n   - Provide delete for individual saved looks.\n   - Provide a small floating “Save” control on mirror screen.\n7) Permissions:\n   - Handle camera permission prompt and errors.\n   - Provide Retry.\n   - Allow “Continue without camera” mode using a tasteful placeholder background.\n\nDesign direction:\n- Ultra-minimal, visual, mirror-first UI.\n- Camera feed fills entire viewport.\n- Controls are tiny floating buttons (top/bottom corners), subtle translucent backgrounds, high contrast.\n- Avoid persistent text; only minimal labels.\n- One-handed on small screens; do not block face/torso center.\n- Respect safe-area insets on iOS.\n\nTechnical requirements:\n- Vite config must support GitHub Pages subpath deployment: set `base: './'`.\n- Use React + TypeScript.\n- Implement custom hooks:\n  - `useCamera()` to manage getUserMedia lifecycle and status.\n  - `useSwipe()` using pointer/touch events to detect horizontal swipes (with threshold).\n- Outfit system:\n  - Create a static outfit catalog in `src/data/outfits.ts`.\n  - Each outfit: `id`, `name`, `tags` (moods/destinations/keywords), and layered assets (imported SVG/PNG) such as top/bottom/shoes/accessory.\n  - Provide ~12–20 outfits for variety using simple SVG assets you create in-repo (no external downloads).\n  - Selection algorithm: score outfits by matching mood/destination (both preset and free text tokens), pick a suggestion set (e.g., 7) and allow reshuffle.\n- Closet:\n  - Store array of saved outfit IDs + timestamps in localStorage.\n  - Closet grid renders miniature previews by reusing the same OutfitOverlay renderer in a scaled container (avoid storing big images/dataURLs).\n- Accessibility:\n  - Buttons have aria-labels.\n  - Closet is a proper modal dialog (aria-modal, focus trap or at least initial focus + ESC to close).\n  - Keyboard support: left/right arrows to change looks; Enter/Space activate focused controls.\n  - Visible focus styles.\n  - `prefers-reduced-motion` reduces transitions.\n\nImplementation details:\n- Mirror screen layout:\n  - Use a full-viewport container.\n  - `<video>` absolute, inset 0, `width/height: 100%`, `object-fit: cover`, `transform: scaleX(-1)`.\n  - Overlay container absolute inset 0, pointer-events none; inside, position outfit layers around center (torso region). Apply same mirror transform as video so it feels aligned.\n- Controls:\n  - Floating buttons with pointer-events auto.\n  - Suggested positions:\n    - Top-left: Back (to prompts) or reset.\n    - Top-right: Closet.\n    - Bottom-right: Save.\n    - Bottom-left or bottom-center: Try again.\n- Prevent page scrolling while in mirror mode.\n\nFiles to include (minimum):\n- package.json (vite/react/ts)\n- vite.config.ts (base './')\n- tsconfig.json, tsconfig.node.json\n- index.html\n- src/main.tsx\n- src/App.tsx\n- src/styles.css (global, includes safe-area handling)\n- src/hooks/useCamera.ts\n- src/hooks/useSwipe.ts\n- src/data/outfits.ts\n- src/components/OnboardingMood.tsx\n- src/components/OnboardingDestination.tsx\n- src/components/MirrorScreen.tsx\n- src/components/OutfitOverlay.tsx\n- src/components/ClosetModal.tsx\n- src/utils/storage.ts\n- src/utils/outfitSelection.ts\n- src/assets/outfits/*.svg (create multiple simple SVGs for layers)\n- README.md with run/build/deploy instructions for GitHub Pages.\n\nEnsure:\n- No external asset URLs.\n- No reliance on non-static services.\n- Works on mobile Safari/Chrome best-effort (playsInline; start camera on user gesture).\n\nOutput format:\n- Return the complete repository file tree with each file path and full contents.\n"
       }
     }
   ],
@@ -273,7 +324,61 @@ a smart mirror that helps you decide what to wear today.
 }
 ~~~
 
-Codex prompt plan is pending.
+### Codex Prompt Plan
+
+~~~json
+{
+  "title": "MirrorLook — Mobile-first Smart Mirror (Vite + React + TypeScript, static GitHub Pages)",
+  "summary": "Build a production-oriented, mobile-first, fullscreen “smart mirror” web app. It asks mood + destination, then opens a fullscreen mirrored front-camera view with minimal floating controls. Outfit overlays are generated from a local static catalog based on mood/destination. Swipe left/right changes looks, “Try again” reshuffles suggestions, and a floating “Closet” opens a fullscreen saved-looks gallery stored in localStorage.",
+  "architectureInstructions": [
+    "Create a static, browser-only Vite React TypeScript app (no backend, no serverless functions).",
+    "All data must be local: outfit catalog + overlay assets bundled in repo; persistence via localStorage only.",
+    "Must work when deployed to GitHub Pages, including repo subpath deployments: configure Vite `base: './'` and use relative asset loading via imports.",
+    "Implement a simple in-app state machine for screens (no router required). Screens: Entry (optional brief), Mood prompt, Destination prompt, Mirror, Closet modal, Permission/fallback states.",
+    "Camera uses `navigator.mediaDevices.getUserMedia` with `facingMode: 'user'` when possible; handle errors and allow continuing without camera (placeholder background).",
+    "Mirror effect: horizontally flip the video layer (CSS transform) while keeping overlay aligned (overlay should flip same way so it feels attached to the mirror).",
+    "Primary interaction is swipe left/right to cycle looks; must support touch + mouse (pointer events).",
+    "Keep UI minimal: fullscreen camera, only small floating buttons (Try again, Closet, Save, Back/Close). Avoid panels/sections around the camera.",
+    "Accessibility: clear focus states, labeled buttons, readable contrast, reduced-motion support, ARIA for modal, and non-blocking text overlays.",
+    "No TODOs/placeholders; provide complete, buildable files. Include README with run/build/deploy notes for GitHub Pages."
+  ],
+  "frontendInstructions": [
+    "Use React + TypeScript functional components with hooks.",
+    "Implement `useCamera` hook that starts/stops stream, selects front camera when available, exposes status (idle/loading/ready/denied/error) and error messages.",
+    "Implement `useSwipe` (or similar) using pointer/touch events to detect horizontal swipe with threshold; support keyboard alternatives (left/right arrows) for accessibility.",
+    "Create an outfit system: `Outfit` objects with id, name, tags (moods, destinations, vibe keywords), and layered overlay assets (SVG/PNG). Render overlays as positioned, responsive layers centered over the user (e.g., torso region).",
+    "Outfit selection logic: based on chosen mood/destination (preset + free text), compute matches via tag scoring (simple keyword match) and pick a small set (e.g., 7) of suggestions; “Try again” reshuffles/regenerates a new set from same query.",
+    "Mirror screen layout: `<video>` full-viewport with `object-fit: cover`, `playsInline`, `muted`, `autoPlay` (start playback after stream set). Apply `transform: scaleX(-1)` for mirroring.",
+    "Overlay: absolute positioned container on top of video; ensure it scales with viewport; add slight shadow/outline for visibility.",
+    "Closet: floating button opens fullscreen modal gallery. Gallery shows saved looks in a grid (render mini overlay previews using same outfit renderer at smaller size). Tap applies instantly and closes modal.",
+    "Save current look: store in localStorage as an array of `{ outfitId, createdAt }`; include dedupe or allow multiples; provide delete single look in closet.",
+    "Permission/fallback UI: if denied/unavailable, show minimal fullscreen message with actions: Retry camera, Continue without camera. Continue uses a subtle animated/gradient background instead of video.",
+    "Polish: safe-area insets for iOS, prevent body scroll in mirror mode, handle orientation changes, respect `prefers-reduced-motion` (reduce transitions)."
+  ],
+  "backendInstructions": [
+    "None. Do not add any backend, server APIs, database, auth, or secret handling. All behavior must be client-only using localStorage, in-memory state, and bundled static assets."
+  ],
+  "modificationInstructions": [
+    "Return a COMPLETE REPLACEMENT FILE SET for a new repository (create mode). Include all necessary config and source files.",
+    "Use Vite + React + TypeScript templates as baseline, but fully implement all features described.",
+    "Avoid heavy dependencies; prefer small custom hooks/utilities. Only add dependencies if truly necessary.",
+    "Ensure `npm install`, `npm run build`, and `npm run preview` work without additional steps."
+  ],
+  "acceptanceCriteria": [
+    "App builds with `npm run build` into static assets and runs with `npm run preview`.",
+    "Deployed under a subpath (GitHub Pages) works correctly (Vite base configured; assets load).",
+    "On first use, user is prompted for Mood (preset + free text) and Destination (preset + free text) before mirror starts.",
+    "Mirror screen is truly fullscreen and immersive: no surrounding layout; camera fills viewport; UI is limited to small floating controls.",
+    "Front camera requested (`facingMode: 'user'`); video is mirrored (horizontal flip).",
+    "Outfit overlay appears automatically based on mood/destination; user can swipe left/right to change looks.",
+    "“Try again” generates a fresh set of suggestions from the same mood/destination inputs.",
+    "User can save a look; Closet modal shows saved looks from localStorage; selecting applies instantly; deleting works.",
+    "Graceful handling when camera is denied/unavailable with retry + continue-without-camera mode.",
+    "Mobile-first usability: one-handed controls, safe-area padding, no accidental scroll; accessible buttons/labels and modal semantics."
+  ],
+  "codexPrompt": "You are Codex. Generate a complete replacement file set for a NEW repo implementing the app described below.\n\nProject: MirrorLook (Vite + React + TypeScript)\nDeployment: Static, serverless, browser-only. Must work on GitHub Pages including repository subpath deployments.\nIMPORTANT CONSTRAINTS:\n- Do NOT add backend code, server routes, serverless functions, databases, private APIs, or secrets.\n- All “backend-like” behavior must be localStorage / in-memory state / bundled static sample data.\n- No TODOs or placeholders; everything must be implemented and runnable.\n\nCore UX:\n1) On open, ask: “How do you feel?”\n   - Provide preset option chips + a free-text input.\n   - Presets example: Confident, Cozy, Bold, Calm, Energetic.\n   - Next button.\n2) Then ask: “Where are you going?”\n   - Provide preset chips + free-text input.\n   - Presets example: Work, Date, Gym, Party, Errands, Chill.\n   - Start Mirror button.\n3) After prompts, open fullscreen FRONT camera.\n   - The camera must feel like a real mirror: fullscreen, clean, immersive.\n   - No panels/sections around it.\n   - Mirror effect: horizontally flip the video.\n4) On top of the mirror:\n   - Render a full outfit overlay automatically chosen based on mood + destination.\n   - Overlay assets must be bundled with app (SVG/PNG). Keep it visually clear and centered.\n5) Interaction:\n   - Swipe left/right changes the full outfit (next/previous look).\n   - Add a small “Try again” button to regenerate a new set of outfit suggestions for the same mood/destination.\n6) Closet:\n   - Small floating “Closet” button.\n   - Opens fullscreen gallery modal of saved looks (from localStorage).\n   - Selecting a saved look applies it instantly in the mirror.\n   - Provide delete for individual saved looks.\n   - Provide a small floating “Save” control on mirror screen.\n7) Permissions:\n   - Handle camera permission prompt and errors.\n   - Provide Retry.\n   - Allow “Continue without camera” mode using a tasteful placeholder background.\n\nDesign direction:\n- Ultra-minimal, visual, mirror-first UI.\n- Camera feed fills entire viewport.\n- Controls are tiny floating buttons (top/bottom corners), subtle translucent backgrounds, high contrast.\n- Avoid persistent text; only minimal labels.\n- One-handed on small screens; do not block face/torso center.\n- Respect safe-area insets on iOS.\n\nTechnical requirements:\n- Vite config must support GitHub Pages subpath deployment: set `base: './'`.\n- Use React + TypeScript.\n- Implement custom hooks:\n  - `useCamera()` to manage getUserMedia lifecycle and status.\n  - `useSwipe()` using pointer/touch events to detect horizontal swipes (with threshold).\n- Outfit system:\n  - Create a static outfit catalog in `src/data/outfits.ts`.\n  - Each outfit: `id`, `name`, `tags` (moods/destinations/keywords), and layered assets (imported SVG/PNG) such as top/bottom/shoes/accessory.\n  - Provide ~12–20 outfits for variety using simple SVG assets you create in-repo (no external downloads).\n  - Selection algorithm: score outfits by matching mood/destination (both preset and free text tokens), pick a suggestion set (e.g., 7) and allow reshuffle.\n- Closet:\n  - Store array of saved outfit IDs + timestamps in localStorage.\n  - Closet grid renders miniature previews by reusing the same OutfitOverlay renderer in a scaled container (avoid storing big images/dataURLs).\n- Accessibility:\n  - Buttons have aria-labels.\n  - Closet is a proper modal dialog (aria-modal, focus trap or at least initial focus + ESC to close).\n  - Keyboard support: left/right arrows to change looks; Enter/Space activate focused controls.\n  - Visible focus styles.\n  - `prefers-reduced-motion` reduces transitions.\n\nImplementation details:\n- Mirror screen layout:\n  - Use a full-viewport container.\n  - `<video>` absolute, inset 0, `width/height: 100%`, `object-fit: cover`, `transform: scaleX(-1)`.\n  - Overlay container absolute inset 0, pointer-events none; inside, position outfit layers around center (torso region). Apply same mirror transform as video so it feels aligned.\n- Controls:\n  - Floating buttons with pointer-events auto.\n  - Suggested positions:\n    - Top-left: Back (to prompts) or reset.\n    - Top-right: Closet.\n    - Bottom-right: Save.\n    - Bottom-left or bottom-center: Try again.\n- Prevent page scrolling while in mirror mode.\n\nFiles to include (minimum):\n- package.json (vite/react/ts)\n- vite.config.ts (base './')\n- tsconfig.json, tsconfig.node.json\n- index.html\n- src/main.tsx\n- src/App.tsx\n- src/styles.css (global, includes safe-area handling)\n- src/hooks/useCamera.ts\n- src/hooks/useSwipe.ts\n- src/data/outfits.ts\n- src/components/OnboardingMood.tsx\n- src/components/OnboardingDestination.tsx\n- src/components/MirrorScreen.tsx\n- src/components/OutfitOverlay.tsx\n- src/components/ClosetModal.tsx\n- src/utils/storage.ts\n- src/utils/outfitSelection.ts\n- src/assets/outfits/*.svg (create multiple simple SVGs for layers)\n- README.md with run/build/deploy instructions for GitHub Pages.\n\nEnsure:\n- No external asset URLs.\n- No reliance on non-static services.\n- Works on mobile Safari/Chrome best-effort (playsInline; start camera on user gesture).\n\nOutput format:\n- Return the complete repository file tree with each file path and full contents.\n"
+}
+~~~
 
 ## Action History
 
