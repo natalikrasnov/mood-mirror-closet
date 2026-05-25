@@ -12,7 +12,7 @@ Generated application files are committed to the repository default branch after
   "name": "MirrorLook",
   "summary": "A mobile-first, fullscreen “smart mirror” web app that asks your mood and destination, then opens the front camera as a clean mirror view and overlays curated outfit looks you can swipe through, regenerate, and save to a minimal closet gallery.",
   "status": "LIVE",
-  "currentStep": "Publishing to GitHub Pages",
+  "currentStep": "Live on GitHub Pages",
   "githubRepoUrl": "https://github.com/natalikrasnov/mood-mirror-closet",
   "githubOwner": "natalikrasnov",
   "githubRepo": "mood-mirror-closet",
@@ -20,7 +20,7 @@ Generated application files are committed to the repository default branch after
   "githubDefaultBranch": "main",
   "error": null,
   "createdAt": "2026-05-24T08:22:21.610Z",
-  "updatedAt": "2026-05-24T08:29:28.687Z",
+  "updatedAt": "2026-05-25T17:32:01.843Z",
   "actions": [
     {
       "id": "action_af98a76b8a8b1469c85d",
@@ -314,21 +314,20 @@ Generated application files are committed to the repository default branch after
   ],
   "codexRunId": "resp_0b3a8444c75d5a9a006a12b5bcce00819cb4c833e3e94ca08e",
   "githubPagesUrl": "https://natalikrasnov.github.io/mood-mirror-closet/",
-  "githubPagesStatus": "publishing",
-  "githubPagesUpdatedAt": "2026-05-24T08:29:28.687Z",
+  "githubPagesStatus": "built",
+  "githubPagesUpdatedAt": "2026-05-25T17:32:01.843Z",
   "githubPagesSourceSha": "82cf204a2e8fa0a88467f597a9ab3a06d7751a69",
   "githubLastCommitSha": "82cf204a2e8fa0a88467f597a9ab3a06d7751a69",
-  "pagesDispatchRequestedAt": "2026-05-24T08:29:20.852Z",
   "githubWorkflowRunId": 26356376954,
   "githubWorkflowRunUrl": "https://github.com/natalikrasnov/mood-mirror-closet/actions/runs/26356376954",
-  "githubWorkflowRunStatus": "in_progress",
-  "githubWorkflowRunConclusion": null
+  "githubWorkflowRunStatus": "completed",
+  "githubWorkflowRunConclusion": "success"
 }
 ~~~
 
 ## Status
 
-Current stage: **Publishing to GitHub Pages**
+Current stage: **Live on GitHub Pages**
 
 Complete: **yes**
 
@@ -351,7 +350,7 @@ Repository: https://github.com/natalikrasnov/mood-mirror-closet
 
 Live site: https://natalikrasnov.github.io/mood-mirror-closet/
 
-GitHub Pages status: publishing
+GitHub Pages status: built
 
 Code branch: main
 
